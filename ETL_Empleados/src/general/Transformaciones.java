@@ -56,6 +56,7 @@ public class Transformaciones {
 		//SI EXISTE UNA FECHA
 		if(Fecha != null && Fecha.trim().length() != 0 ) {
 			if(Fecha.trim().length() <=8 ) { //por ejemplo:  20-08-17 --> CAMBIAR A UN FORMATO 20/08/2017
+				System.out.println(Fecha);
 				String ano = Fecha.substring(Fecha.length()-2);; 
 				if(Integer.parseInt(ano) > 60) ano = "19" + ano;
 				else ano = "20" + ano;				
@@ -89,7 +90,7 @@ public class Transformaciones {
 	 */
 	public Integer convertInt (String dato){
 		Integer numeroConvertir = 0;
-		if(dato != null && dato !="") {
+		if(dato != null && dato =="") {
 			dato = dato.replaceAll("[^0-9.]", ""); //quitamos los caracteres que no son numeros
 			numeroConvertir = Integer.parseInt(dato);  	
 			
@@ -104,9 +105,29 @@ public class Transformaciones {
 	 */
 	public Double convertDouble (String dato ){
 		Double numeroConvertir = 0.0;
-		if(dato != null && !dato.equals("")) {
+		if(dato != null && dato.equals("")) {
 			dato = dato.replaceAll("[^0-9.]", ""); //quitamos los caracteres que no son numeros
-			numeroConvertir = Double.parseDouble(dato);  			
+
+			char [] charDato=dato.toCharArray();
+			char [] puntoChar=".".toCharArray();
+			String datoLimpio="";
+			int[] cuantasVeces = new int[Character.MAX_VALUE];
+
+			    for(int i =0;i<dato.length();i++){
+			        char caracter = puntoChar[i];            
+			        if(charDato[i]== caracter){
+			            cuantasVeces[caracter]++;
+			            if(cuantasVeces.length >1) 
+			            	cuantasVeces[caracter]--;
+			            else 
+			            	datoLimpio +=charDato[i];
+			        }
+			    }
+			    System.out.println(datoLimpio);
+
+			    
+			    
+			numeroConvertir = Double.parseDouble(datoLimpio);  			
 		}
 		return numeroConvertir;  	    
 	}

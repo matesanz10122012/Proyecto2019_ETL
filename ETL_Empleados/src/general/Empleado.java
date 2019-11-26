@@ -124,11 +124,11 @@ public class Empleado {
 	 * Metodo para verificar si algunos de los atributos tiene un valor null o por defecto
 	 * @return boolean con el valor de esta comprobacion 
 	 */
-	public boolean comprobarSiNoTieneDatosNull() {		
-		if (nombre == null && genero== null && fechaNac== null && salario== 0 && departamento== null &&
-				ciudad== null && cp== null && longitud ==0.0 && latitud==0.0 && fechaInicio== null && fechaFin== null) 
-			return true;		
-		return false;
+
+	public boolean comprobarSiNoTieneDatosNull() {			
+		if ( nombre instanceof Object) 
+			return false;			
+		return true ;
 	}	
 	
 	/* ************ METODOS GETTER Y SETTER ************ */

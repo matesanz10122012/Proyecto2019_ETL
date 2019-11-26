@@ -152,7 +152,7 @@ public class LeerFicheros {
 		int contadorLinea = 0;
 		int LongitudFila = cGeneral.length;
 		Integer numeroFilas = (lengthdatosCadenaFicheroArrayList /(LongitudFila-1));
-
+		
 	    //SACAMOS CADA REGISTRO, CREAMOS EL EMPLEADO Y LO AÑADIMOS A NUESTRA LISTA
 		while(contadorLinea <numeroFilas) {
 			String nombre=null;
@@ -190,9 +190,11 @@ public class LeerFicheros {
 				}
 			}
 			contadorLinea ++;
-
-			System.out.println("ini "+fechaInicio);
-			System.out.println("fin "+fechaFin);
+			
+			
+			
+			
+			
 			
 			//GUARDAMOS ESTOS DATOS EN UN OBJETO EMPLEADO
 			Empleado empleadoCreado = new Empleado (nombre, t.unificarGenero(genero), t.convertDate(fechaNac), t.convertInt(salario), departamento,
@@ -220,6 +222,7 @@ public class LeerFicheros {
 							}
 			}
 		
+					
 			//GUARDAMOS EN LA LISTA
 			if (!empleadoCreado.comprobarSiNoTieneDatosNull())
 				listEmpleados.add(empleadoCreado);
@@ -483,7 +486,6 @@ public class LeerFicheros {
 				String fechaFin=null;
 			
 				for(int i = 0; i < indexColumnaOrdenado.size(); i++) {
-					System.out.println("bb"+valorLineaArray[i]);
 					if(valorLineaArray[i].length()!=0)
 						if(valorLineaArray[i].substring(0,1).equals("[")) valorLineaArray[i]= valorLineaArray[i].substring(1);
 						else if(valorLineaArray[i].substring(valorLineaArray[i].length()-1,valorLineaArray[i].length()).contentEquals("]")) 
@@ -527,7 +529,8 @@ public class LeerFicheros {
 				//GUARDAMOS ESTOS DATOS EN UN OBJETO EMPLEADO
 				Empleado empleadoCreado = new Empleado (nombre, t.unificarGenero(genero), t.convertDate(fechaNac), t.convertInt(salario), departamento,
 					ciudad, cp, t.convertDouble(longitud), t.convertDouble(latitud), t.convertDate(fechaInicio), t.convertDate(fechaFin)); 
-				System.out.println(empleadoCreado.toStringFormateado());
+				//System.out.println(empleadoCreado.toStringFormateado());
+				
 				/* TRANSFORMACIONES PARA ORDENAR LAS FECHAS
 					1. SI LA FECHA DE INICIO ES MAYOR A LA FECHA DE NACIMIENTO --> CAMBIAMOS DICHAS FECHAS
 					   Y SI LA FECHA DE FIN ES MAYOR QUE LA FECHA DE INICIO --> VACIAMOS EL VALOR DE LA FECHA FIN 

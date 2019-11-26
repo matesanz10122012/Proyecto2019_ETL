@@ -49,15 +49,19 @@ public class BBDD {
 		try {
 			sp = conexion.prepareCall(" CALL insertBBDD(?,?,?,?,?,?,?,?,?,?,?)");
 			
-			System.out.println(empleado.getFechaFin());
 			// PARAMETRO DE ENTRADA
-			sp.setString("nombre",      StringUtils.stripAccents(empleado.getNombre()).replace("?",""));
-			sp.setString("genero",      StringUtils.stripAccents(empleado.getGenero()).replace("?",""));
+			if (empleado.getNombre()!=null)	sp.setString("nombre",  StringUtils.stripAccents(empleado.getNombre()).replace("?",""));
+				else sp.setString("nombre",null);
+			if (empleado.getGenero()!=null)	sp.setString("genero",  StringUtils.stripAccents(empleado.getGenero()).replace("?",""));
+				else sp.setString("genero",null);
 			sp.setDate("fechaNac",      empleado.getFechaNac());
 			sp.setInt("salario",      	empleado.getSalario());
-			sp.setString("departamento",StringUtils.stripAccents(empleado.getDepartamento()).replace("?",""));
-			sp.setString("ciudad",      StringUtils.stripAccents(empleado.getCiudad()).replace("?",""));
-			sp.setString("cp",          StringUtils.stripAccents(empleado.getCp()).replace("?",""));
+			if (empleado.getDepartamento()!=null)	sp.setString("departamento",  StringUtils.stripAccents(empleado.getDepartamento()).replace("?",""));
+				else sp.setString("departamento",null);
+			if (empleado.getCiudad()!=null)	sp.setString("ciudad",  StringUtils.stripAccents(empleado.getCiudad()).replace("?",""));
+				else sp.setString("ciudad",null);
+			if (empleado.getCp()!=null)	sp.setString("cp",  StringUtils.stripAccents(empleado.getCp()).replace("?",""));
+				else sp.setString("cp", null);
 			sp.setDouble("longitud",    empleado.getLongitud());
 			sp.setDouble("latitud",     empleado.getLatitud());
 			sp.setDate("fechaInicio",   empleado.getFechaInicio());
@@ -66,6 +70,7 @@ public class BBDD {
 			sp.execute();  
 		} catch(Exception e) {
 			JOptionPane.showMessageDialog(null,ExceptionUtils.getStackTrace(e), "ERROR", JOptionPane.ERROR_MESSAGE);	
+			System.out.println(ExceptionUtils.getStackTrace(e));
 		}finally{
 			if(conexion!=null)
 				try {
